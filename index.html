@@ -9,12 +9,13 @@
 body{margin:0;font-family:Arial,sans-serif;background:#0f0f0f;color:white;}
 header{background:#1a1a1a;padding:30px;text-align:center;}
 h1{margin:0;font-size:40px;}
-.container{max-width:1000px;margin:auto;padding:25px;}
+.container{max-width:1100px;margin:auto;padding:25px;}
 .card{background:#1c1c1c;padding:20px;margin:15px 0;border-radius:10px;}
 h2{border-left:4px solid #00ff88;padding-left:10px;}
 .button{display:inline-block;padding:10px 14px;margin:5px;background:#00ff88;color:black;font-weight:bold;border:none;border-radius:8px;cursor:pointer;}
 .button:hover{background:#00cc6a;}
 .output{background:#111;padding:15px;border-radius:10px;margin-bottom:15px;font-family:monospace;}
+input{padding:8px;border-radius:6px;border:none;margin-bottom:10px;width:100%;}
 </style>
 
 <script>
@@ -22,7 +23,9 @@ let reasons = [];
 let severity = "warn";
 
 function addReason(type, reason){
-    reasons.push(reason);
+    if(!reasons.includes(reason)){
+        reasons.push(reason);
+    }
 
     if(type === "ban") severity = "ban";
     else if(type === "kick" && severity !== "ban") severity = "kick";
@@ -60,7 +63,7 @@ function resetLog(){
 
 <div class="card">
 <h2>🧾 Log Builder</h2>
-<input id="user" placeholder="Enter Username" style="padding:8px;border-radius:6px;border:none;margin-bottom:10px;">
+<input id="user" placeholder="Enter Username">
 <div id="output" class="output">:log WARN User - </div>
 <button class="button" onclick="copyLog()">Copy</button>
 <button class="button" onclick="resetLog()">Reset</button>
@@ -68,22 +71,51 @@ function resetLog(){
 
 <div class="card">
 <h2>⚠️ Warn</h2>
-<button class="button" onclick="addReason('warn','RDM')">RDM</button>
-<button class="button" onclick="addReason('warn','VDM')">VDM</button>
-<button class="button" onclick="addReason('warn','FRP')">FRP</button>
-<button class="button" onclick="addReason('warn','NLR')">NLR</button>
+<button class="button" onclick="addReason('warn','New Life Rule (NLR)')">NLR</button>
+<button class="button" onclick="addReason('warn','Vehicle DeathMatch (VDM)')">VDM</button>
+<button class="button" onclick="addReason('warn','Random DeathMatch (RDM)')">RDM</button>
+<button class="button" onclick="addReason('warn','Fail Roleplay (FRP)')">FRP</button>
+<button class="button" onclick="addReason('warn','Cuff Rush')">Cuff Rush</button>
+<button class="button" onclick="addReason('warn','Using banned car/gun')">Banned Car/Gun</button>
+<button class="button" onclick="addReason('warn','False Mod Call')">False Mod Call</button>
+<button class="button" onclick="addReason('warn','Auto Arrest')">Auto Arrest</button>
+<button class="button" onclick="addReason('warn','Wrong/No Livery')">Livery</button>
+<button class="button" onclick="addReason('warn','Unrealistic Avatar x1')">Avatar x1</button>
+<button class="button" onclick="addReason('warn','Failure to join VC/DC x1')">VC/DC x1</button>
+<button class="button" onclick="addReason('warn','Interrupting Roleplays x1')">RP x1</button>
+<button class="button" onclick="addReason('warn','GTA Driving')">GTA Driving</button>
 </div>
 
 <div class="card">
 <h2>⛔ Kick</h2>
-<button class="button" onclick="addReason('kick','Staff Disrespect')">Staff Disrespect</button>
-<button class="button" onclick="addReason('kick','Tool Abuse')">Tool Abuse</button>
+<button class="button" onclick="addReason('kick','Interfering with Staff Base')">Staff Base</button>
+<button class="button" onclick="addReason('kick','Staff RDM/VDM')">Staff RDM/VDM</button>
+<button class="button" onclick="addReason('kick','Staff Evasion')">Staff Evasion</button>
+<button class="button" onclick="addReason('kick','Staff Disrespect')">Disrespect</button>
+<button class="button" onclick="addReason('kick','Crime in Safe Zone')">Safe Zone</button>
+<button class="button" onclick="addReason('kick','Tool abusing')">Tool Abuse</button>
+<button class="button" onclick="addReason('kick','Interrupting Mod Scene')">Mod Scene</button>
+<button class="button" onclick="addReason('kick','Interrupting STS')">STS</button>
+<button class="button" onclick="addReason('kick','Lying/Disobeying Staff')">Lying</button>
+<button class="button" onclick="addReason('kick','Unrealistic Avatar x2')">Avatar x2</button>
+<button class="button" onclick="addReason('kick','Failure to join VC/DC x2')">VC/DC x2</button>
+<button class="button" onclick="addReason('kick','Interrupting Roleplays x2')">RP x2</button>
 </div>
 
 <div class="card">
 <h2>🔴 Ban</h2>
+<button class="button" onclick="addReason('ban','Leave To Avoid Punishment (LTAP)')">LTAP</button>
+<button class="button" onclick="addReason('ban','No Intention To Roleplay (NITRP)')">NITRP</button>
+<button class="button" onclick="addReason('ban','Mass RDM/VDM')">Mass RDM</button>
+<button class="button" onclick="addReason('ban','Suicidal RP')">Suicidal RP</button>
+<button class="button" onclick="addReason('ban','Roblox ToS')">ToS</button>
 <button class="button" onclick="addReason('ban','Exploiting')">Exploiting</button>
-<button class="button" onclick="addReason('ban','LTAP')">LTAP</button>
+<button class="button" onclick="addReason('ban','Staff Impersonating')">Impersonation</button>
+<button class="button" onclick="addReason('ban','Alcohol/Drug Roleplay')">Drug/Alcohol</button>
+<button class="button" onclick="addReason('ban','No Discord/Unable to join')">No Discord</button>
+<button class="button" onclick="addReason('ban','Trolling')">Trolling</button>
+<button class="button" onclick="addReason('ban','NSFW Avatar/Username')">NSFW</button>
+<button class="button" onclick="addReason('ban','MRDM in Safe Zone')">MRDM SZ</button>
 </div>
 
 </div>
