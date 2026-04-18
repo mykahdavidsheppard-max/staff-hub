@@ -21,12 +21,23 @@ input{padding:8px;border-radius:6px;border:none;margin-bottom:10px;width:100%;}
 <script>
 let reasons = [];
 let severity = "warn";
+let counts = { warn: 0, kick: 0, ban: 0 };
 
 function addReason(type, reason){
     if(!reasons.includes(reason)){
         reasons.push(reason);
+        counts[type]++;
     }
 
+    // Escalation logic
+    if(counts.warn >= 3 && severity === "warn"){
+        severity = "kick";
+    }
+    if(counts.kick >= 3){
+        severity = "ban";
+    }
+
+    // Direct severity override
     if(type === "ban") severity = "ban";
     else if(type === "kick" && severity !== "ban") severity = "kick";
 
@@ -48,6 +59,7 @@ function copyLog(){
 function resetLog(){
     reasons = [];
     severity = "warn";
+    counts = { warn: 0, kick: 0, ban: 0 };
     updateOutput();
 }
 </script>
