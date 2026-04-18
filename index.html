@@ -120,11 +120,18 @@ function copyLog(type, user, reason){
     <div id="rules" class="card">
         <h2>⚖️ Staff Rules</h2>
         <ul>
-            <li>No abusing permissions</li>
-            <li>No favoritism</li>
-            <li>Stay professional at all times</li>
-            <li>Follow higher staff instructions</li>
-            <li>No toxicity or disrespect</li>
+            <li>No abusing commands or permissions</li>
+            <li>No favoritism toward friends or players</li>
+            <li>Remain respectful and professional at all times</li>
+            <li>Follow directions from higher-ranking staff</li>
+            <li>No toxicity, arguing, or unprofessional behavior</li>
+            <li>Do not interrupt active roleplays unless required</li>
+            <li>Always use proper moderation procedures</li>
+            <li>Do not leak staff information or internal discussions</li>
+            <li>Stay active and respond to tickets when available</li>
+            <li>Use fair judgment and remain unbiased</li>
+            <li>Do not abuse mod calls or staff tools</li>
+            <li>Respect all players and staff regardless of rank</li>
         </ul>
     </div>
 
@@ -132,19 +139,47 @@ function copyLog(type, user, reason){
         <h2>📋 Staff Punishment Guide</h2>
 
         <h3>⚠️ Warn</h3>
-        <button class="button" onclick="copyLog('warn','User','NLR')">New Life Rule (NLR)</button>
-        <button class="button" onclick="copyLog('warn','User','VDM')">Vehicle DeathMatch (VDM)</button>
-        <button class="button" onclick="copyLog('warn','User','RDM')">Random DeathMatch (RDM)</button>
-        <button class="button" onclick="copyLog('warn','User','FRP')">Fail Roleplay (FRP)</button>
+        <button class="button" onclick="copyLog('warn','User','New Life Rule (NLR)')">New Life Rule (NLR)</button>
+        <button class="button" onclick="copyLog('warn','User','Vehicle DeathMatch (VDM)')">Vehicle DeathMatch (VDM)</button>
+        <button class="button" onclick="copyLog('warn','User','Random DeathMatch (RDM)')">Random DeathMatch (RDM)</button>
+        <button class="button" onclick="copyLog('warn','User','Fail Roleplay (FRP)')">Fail Roleplay (FRP)</button>
         <button class="button" onclick="copyLog('warn','User','Cuff Rush')">Cuff Rush</button>
+        <button class="button" onclick="copyLog('warn','User','Using Banned Car/Gun')">Using banned car/gun</button>
+        <button class="button" onclick="copyLog('warn','User','False Mod Call')">False Mod Call</button>
+        <button class="button" onclick="copyLog('warn','User','Auto Arrest')">Auto Arrest</button>
+        <button class="button" onclick="copyLog('warn','User','Wrong/No Livery')">Wrong/No Livery</button>
+        <button class="button" onclick="copyLog('warn','User','Unrealistic Avatar x1')">Unrealistic Avatar (x1)</button>
+        <button class="button" onclick="copyLog('warn','User','Failure to join VC/DC x1')">Failure to join VC/DC (x1)</button>
+        <button class="button" onclick="copyLog('warn','User','Interrupting RP x1')">Interrupting Roleplays (x1)</button>
+        <button class="button" onclick="copyLog('warn','User','GTA Driving')">GTA Driving</button>
 
         <h3>⛔ Kick</h3>
+        <button class="button" onclick="copyLog('kick','User','Interfering with Staff Base')">Interfering with staff base</button>
+        <button class="button" onclick="copyLog('kick','User','Staff RDM/VDM')">Staff RDM/VDM</button>
+        <button class="button" onclick="copyLog('kick','User','Staff Evasion')">Staff Evasion</button>
         <button class="button" onclick="copyLog('kick','User','Staff Disrespect')">Staff Disrespect</button>
-        <button class="button" onclick="copyLog('kick','User','Tool Abuse')">Tool Abusing</button>
+        <button class="button" onclick="copyLog('kick','User','Crime in Safe Zone')">Crime in Safe Zone</button>
+        <button class="button" onclick="copyLog('kick','User','Tool Abuse')">Tool abusing</button>
+        <button class="button" onclick="copyLog('kick','User','Interrupting Mod Scene')">Interrupting a mod scene</button>
+        <button class="button" onclick="copyLog('kick','User','Interrupting STS')">Interrupting STS</button>
+        <button class="button" onclick="copyLog('kick','User','Lying to Staff')">Lying/disobeying staff</button>
+        <button class="button" onclick="copyLog('kick','User','Unrealistic Avatar x2')">Unrealistic avatar (x2)</button>
+        <button class="button" onclick="copyLog('kick','User','Failure to join VC/DC x2')">Failure to join VC/DC (x2)</button>
+        <button class="button" onclick="copyLog('kick','User','Interrupting RP x2')">Interrupting Roleplays (x2)</button>
 
         <h3>🔴 Ban</h3>
-        <button class="button" onclick="copyLog('ban','User','LTAP')">Leave To Avoid Punishment</button>
+        <button class="button" onclick="copyLog('ban','User','LTAP')">Leave To Avoid Punishment (LTAP)</button>
+        <button class="button" onclick="copyLog('ban','User','NITRP')">No Intention To Roleplay (NITRP)</button>
+        <button class="button" onclick="copyLog('ban','User','Mass RDM/VDM')">Mass RDM/VDM</button>
+        <button class="button" onclick="copyLog('ban','User','Suicidal RP')">Suicidal RP</button>
+        <button class="button" onclick="copyLog('ban','User','Roblox ToS')">Roblox ToS</button>
         <button class="button" onclick="copyLog('ban','User','Exploiting')">Exploiting</button>
+        <button class="button" onclick="copyLog('ban','User','Staff Impersonating')">Staff Impersonating</button>
+        <button class="button" onclick="copyLog('ban','User','Alcohol/Drug RP')">Alcohol/Drug Roleplay</button>
+        <button class="button" onclick="copyLog('ban','User','No Discord')">No Discord/Unable to join</button>
+        <button class="button" onclick="copyLog('ban','User','Trolling')">Trolling</button>
+        <button class="button" onclick="copyLog('ban','User','NSFW')">NSFW Avatar/Username</button>
+        <button class="button" onclick="copyLog('ban','User','MRDM Safe Zone')">MRDM in Safe Zone</button>
 
     </div>
 
