@@ -6,93 +6,46 @@
 <title>Staff Hub</title>
 
 <style>
-body{
-    margin:0;
-    font-family:Arial, sans-serif;
-    background:#0f0f0f;
-    color:white;
-}
-
-header{
-    background:#1a1a1a;
-    padding:30px;
-    text-align:center;
-}
-
+body{margin:0;font-family:Arial,sans-serif;background:#0f0f0f;color:white;}
+header{background:#1a1a1a;padding:30px;text-align:center;}
 h1{margin:0;font-size:40px;}
-
-nav{
-    display:flex;
-    justify-content:center;
-    gap:20px;
-    background:#151515;
-    padding:15px;
-    position:sticky;
-    top:0;
-}
-
-nav a{
-    color:white;
-    text-decoration:none;
-    font-weight:bold;
-    padding:8px 12px;
-    border-radius:6px;
-}
-
-nav a:hover{
-    background:#00ff88;
-    color:black;
-}
-
-.container{
-    max-width:1000px;
-    margin:auto;
-    padding:25px;
-}
-
-.card{
-    background:#1c1c1c;
-    padding:20px;
-    margin:15px 0;
-    border-radius:10px;
-}
-
-h2{
-    border-left:4px solid #00ff88;
-    padding-left:10px;
-}
-
-.status-open{color:#00ff88;}
-
-.button{
-    display:inline-block;
-    padding:10px 14px;
-    margin:5px;
-    background:#00ff88;
-    color:black;
-    font-weight:bold;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
-}
-
-.button:hover{
-    background:#00cc6a;
-}
-
-footer{
-    text-align:center;
-    padding:20px;
-    color:#aaa;
-    font-size:13px;
-}
+.container{max-width:1000px;margin:auto;padding:25px;}
+.card{background:#1c1c1c;padding:20px;margin:15px 0;border-radius:10px;}
+h2{border-left:4px solid #00ff88;padding-left:10px;}
+.button{display:inline-block;padding:10px 14px;margin:5px;background:#00ff88;color:black;font-weight:bold;border:none;border-radius:8px;cursor:pointer;}
+.button:hover{background:#00cc6a;}
+.output{background:#111;padding:15px;border-radius:10px;margin-bottom:15px;font-family:monospace;}
 </style>
 
 <script>
-function copyLog(type, user, reason){
-    const text = `:log ${type.toUpperCase()} ${user} - ${reason}`;
+let reasons = [];
+let severity = "warn";
+
+function addReason(type, reason){
+    reasons.push(reason);
+
+    if(type === "ban") severity = "ban";
+    else if(type === "kick" && severity !== "ban") severity = "kick";
+
+    updateOutput();
+}
+
+function updateOutput(){
+    let user = document.getElementById("user").value || "User";
+    let text = `:log ${severity.toUpperCase()} ${user} - ${reasons.join(", ")}`;
+    document.getElementById("output").innerText = text;
+}
+
+function copyLog(){
+    let text = document.getElementById("output").innerText;
     navigator.clipboard.writeText(text);
     alert("Copied: " + text);
+}
+
+function resetLog(){
+    reasons = [];
+    severity = "warn";
+    updateOutput();
 }
 </script>
 
@@ -101,93 +54,39 @@ function copyLog(type, user, reason){
 
 <header>
     <h1>Staff Hub</h1>
-    <p class="status-open">🟢 Server Status: ACTIVE</p>
 </header>
-
-<nav>
-    <a href="#info">Info</a>
-    <a href="#rules">Rules</a>
-    <a href="#guide">Guide</a>
-</nav>
 
 <div class="container">
 
-    <div id="info" class="card">
-        <h2>📌 Staff Information</h2>
-        <p>Staff are responsible for maintaining order, professionalism, and fairness within the server.</p>
-    </div>
-
-    <div id="rules" class="card">
-        <h2>⚖️ Staff Rules</h2>
-        <ul>
-            <li>No abusing commands or permissions</li>
-            <li>No favoritism toward friends or players</li>
-            <li>Remain respectful and professional at all times</li>
-            <li>Follow directions from higher-ranking staff</li>
-            <li>No toxicity, arguing, or unprofessional behavior</li>
-            <li>Do not interrupt active roleplays unless required</li>
-            <li>Always use proper moderation procedures</li>
-            <li>Do not leak staff information or internal discussions</li>
-            <li>Stay active and respond to tickets when available</li>
-            <li>Use fair judgment and remain unbiased</li>
-            <li>Do not abuse mod calls or staff tools</li>
-            <li>Respect all players and staff regardless of rank</li>
-        </ul>
-    </div>
-
-    <div id="guide" class="card">
-        <h2>📋 Staff Punishment Guide</h2>
-
-        <h3>⚠️ Warn</h3>
-        <button class="button" onclick="copyLog('warn','User','New Life Rule (NLR)')">New Life Rule (NLR)</button>
-        <button class="button" onclick="copyLog('warn','User','Vehicle DeathMatch (VDM)')">Vehicle DeathMatch (VDM)</button>
-        <button class="button" onclick="copyLog('warn','User','Random DeathMatch (RDM)')">Random DeathMatch (RDM)</button>
-        <button class="button" onclick="copyLog('warn','User','Fail Roleplay (FRP)')">Fail Roleplay (FRP)</button>
-        <button class="button" onclick="copyLog('warn','User','Cuff Rush')">Cuff Rush</button>
-        <button class="button" onclick="copyLog('warn','User','Using Banned Car/Gun')">Using banned car/gun</button>
-        <button class="button" onclick="copyLog('warn','User','False Mod Call')">False Mod Call</button>
-        <button class="button" onclick="copyLog('warn','User','Auto Arrest')">Auto Arrest</button>
-        <button class="button" onclick="copyLog('warn','User','Wrong/No Livery')">Wrong/No Livery</button>
-        <button class="button" onclick="copyLog('warn','User','Unrealistic Avatar x1')">Unrealistic Avatar (x1)</button>
-        <button class="button" onclick="copyLog('warn','User','Failure to join VC/DC x1')">Failure to join VC/DC (x1)</button>
-        <button class="button" onclick="copyLog('warn','User','Interrupting RP x1')">Interrupting Roleplays (x1)</button>
-        <button class="button" onclick="copyLog('warn','User','GTA Driving')">GTA Driving</button>
-
-        <h3>⛔ Kick</h3>
-        <button class="button" onclick="copyLog('kick','User','Interfering with Staff Base')">Interfering with staff base</button>
-        <button class="button" onclick="copyLog('kick','User','Staff RDM/VDM')">Staff RDM/VDM</button>
-        <button class="button" onclick="copyLog('kick','User','Staff Evasion')">Staff Evasion</button>
-        <button class="button" onclick="copyLog('kick','User','Staff Disrespect')">Staff Disrespect</button>
-        <button class="button" onclick="copyLog('kick','User','Crime in Safe Zone')">Crime in Safe Zone</button>
-        <button class="button" onclick="copyLog('kick','User','Tool Abuse')">Tool abusing</button>
-        <button class="button" onclick="copyLog('kick','User','Interrupting Mod Scene')">Interrupting a mod scene</button>
-        <button class="button" onclick="copyLog('kick','User','Interrupting STS')">Interrupting STS</button>
-        <button class="button" onclick="copyLog('kick','User','Lying to Staff')">Lying/disobeying staff</button>
-        <button class="button" onclick="copyLog('kick','User','Unrealistic Avatar x2')">Unrealistic avatar (x2)</button>
-        <button class="button" onclick="copyLog('kick','User','Failure to join VC/DC x2')">Failure to join VC/DC (x2)</button>
-        <button class="button" onclick="copyLog('kick','User','Interrupting RP x2')">Interrupting Roleplays (x2)</button>
-
-        <h3>🔴 Ban</h3>
-        <button class="button" onclick="copyLog('ban','User','LTAP')">Leave To Avoid Punishment (LTAP)</button>
-        <button class="button" onclick="copyLog('ban','User','NITRP')">No Intention To Roleplay (NITRP)</button>
-        <button class="button" onclick="copyLog('ban','User','Mass RDM/VDM')">Mass RDM/VDM</button>
-        <button class="button" onclick="copyLog('ban','User','Suicidal RP')">Suicidal RP</button>
-        <button class="button" onclick="copyLog('ban','User','Roblox ToS')">Roblox ToS</button>
-        <button class="button" onclick="copyLog('ban','User','Exploiting')">Exploiting</button>
-        <button class="button" onclick="copyLog('ban','User','Staff Impersonating')">Staff Impersonating</button>
-        <button class="button" onclick="copyLog('ban','User','Alcohol/Drug RP')">Alcohol/Drug Roleplay</button>
-        <button class="button" onclick="copyLog('ban','User','No Discord')">No Discord/Unable to join</button>
-        <button class="button" onclick="copyLog('ban','User','Trolling')">Trolling</button>
-        <button class="button" onclick="copyLog('ban','User','NSFW')">NSFW Avatar/Username</button>
-        <button class="button" onclick="copyLog('ban','User','MRDM Safe Zone')">MRDM in Safe Zone</button>
-
-    </div>
-
+<div class="card">
+<h2>🧾 Log Builder</h2>
+<input id="user" placeholder="Enter Username" style="padding:8px;border-radius:6px;border:none;margin-bottom:10px;">
+<div id="output" class="output">:log WARN User - </div>
+<button class="button" onclick="copyLog()">Copy</button>
+<button class="button" onclick="resetLog()">Reset</button>
 </div>
 
-<footer>
-    © Staff Hub • ERLC Roleplay System
-</footer>
+<div class="card">
+<h2>⚠️ Warn</h2>
+<button class="button" onclick="addReason('warn','RDM')">RDM</button>
+<button class="button" onclick="addReason('warn','VDM')">VDM</button>
+<button class="button" onclick="addReason('warn','FRP')">FRP</button>
+<button class="button" onclick="addReason('warn','NLR')">NLR</button>
+</div>
+
+<div class="card">
+<h2>⛔ Kick</h2>
+<button class="button" onclick="addReason('kick','Staff Disrespect')">Staff Disrespect</button>
+<button class="button" onclick="addReason('kick','Tool Abuse')">Tool Abuse</button>
+</div>
+
+<div class="card">
+<h2>🔴 Ban</h2>
+<button class="button" onclick="addReason('ban','Exploiting')">Exploiting</button>
+<button class="button" onclick="addReason('ban','LTAP')">LTAP</button>
+</div>
+
+</div>
 
 </body>
 </html>
